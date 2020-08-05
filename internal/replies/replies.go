@@ -126,6 +126,14 @@ func RPL_TOPIC(w Writer, channel, topic string) error {
 	})
 }
 
+func RPL_TOPICWHOTIME(w Writer, channel string) error {
+	return w.WriteMessage(&irc.Message{
+		Prefix:  w.ServerPrefix(),
+		Command: "333",
+		Params:  []string{w.ClientPrefix().Name, channel, "discord", fmt.Sprintf("%d", time.Now().Unix())},
+	})
+}
+
 func RPL_NOTOPIC(w Writer, channel string) error {
 	return w.WriteMessage(&irc.Message{
 		Prefix:  w.ServerPrefix(),

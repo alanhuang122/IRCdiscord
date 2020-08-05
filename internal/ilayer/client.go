@@ -120,6 +120,9 @@ func (c *Client) Join(channel, topic string, created time.Time,
 		if err := replies.RPL_TOPIC(c, channel, topic); err != nil {
 			return err
 		}
+		if err := replies.RPL_TOPICWHOTIME(c, channel); err != nil {
+			return err
+		}
 	}
 
 	if err := replies.RPL_CREATIONTIME(c, channel, created); err != nil {
